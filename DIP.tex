@@ -1,0 +1,252 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\geometry{left=3cm,right=3cm,top=2cm,bottom=2cm}
+\linespread{1.5}
+\usepackage{color}
+\usepackage{xcolor}
+\definecolor{GRE}{RGB}{25,180,68}
+\definecolor{RED}{RGB}{242,63,63} 
+\definecolor{BLU}{RGB}{9,148,234}
+\definecolor{YEL}{RGB}{248,248,170}
+\usepackage[pagecolor={YEL}]{pagecolor}
+\usepackage{latexsym,bm}
+%----------------------------------------------------------
+\begin{document}
+\begin{center}
+\color{RED}
+\huge
+{\textbf{Note of DIP}}
+\end{center}
+%--------------------------------------------------------------
+\section{Chapter 1}\
+\subsection{Digital image}\
+digital image : x,y and the intensity of f are all \textsl{finite,discrete quantities}.
+\\
+\subsection{Computerized processing:}\
+Low-level : input is image,output is image.
+
+Mid-level : input is image,output is attributes on image.
+
+Higher-level : ''\,making sense\,"of ensemble of recognized objects,and performing the cognitive functions.
+\\
+\section{Chapter 2}\
+\subsection{Elements of Visual Perception}\
+1. weber ratio : \begin{math} \Delta I_c/I \end{math}
+
+\ \ I : light source intensity
+
+\ \ \begin{math} \Delta I_c : = \frac12 \Delta I \end{math}
+
+\ \ \begin{math} \Delta I \end{math} : an increasement of illumination\\
+\\
+2. Mach bands : the undershoot and overshoot of bundaries.
+
+\ Simultaneous contrast : a region's perceived brightness does not depend simply on its intensity.\\
+\\
+\subsection{Light and the Electromagnetic Spectrum }\
+1. Wave length (\begin{math} \lambda \end{math} ) \&  Frenquency (v) :
+\begin{displaymath}
+\lambda = \frac{c}{v}
+\end{displaymath}
+
+\ c : the speed of light. (\begin{math} 2.998 \times 10^8 \end{math} m/s)
+
+\ E : energy \&  h : planck's constant 
+\begin{displaymath}
+E=hv
+\end{displaymath}
+\\
+2. Basic qualities of light source
+
+\ a. frenquency
+
+\ b. radiance ( w ) : total amount of energy that flows from the light source.(measured in watts)
+
+\ \ c. luminance ( lm ) : measured in lumens, a measure of the amount of energy that flows from the light source.
+ 
+\ d. brightness : a subjective descriptor of light perception that is particular impossible to measure.\\
+\\
+\subsection{Image Sensing and Acquisition}\
+1. Three principal sensor arrangements of image acquisition
+
+a. Single imaging sensor : the most familiar is the photodiode,which is constructed of silicon materials and whose output voltage waveform is proportional to light.
+
+b. Line sensor ： a geometry consists of an in-line arrangement of sensors in the form of a sensor strip is used much frequently.Sensor strips mounted in a ring configuration are used in medical and industrial imaging.
+
+c. Array sensor : Numerous electromagnetic and some ultrasonic sensinig devices frequently are arranged in an array format.This is also the predominant arrangement found in digital cameras.
+
+Key advantage : a complete image can be obtained by focusing the energy pattern onto the surface of the array.
+\\
+2.\begin{math} f(x,y) = i(x,y)r(x,y)\end{math}
+
+\textsl{illumination : \begin{math} i(x,y) \end{math}} \qquad \textsl{reflectance : \begin{math} r(x,y) \end{math} }
+\begin{eqnarray}
+0<i(x,y)<\infty\\
+0<r(x,y)<1
+\end{eqnarray}
+0 : total absorption \quad 1 : tatal reflectance 
+
+The nature of \begin{math} i(x,y) \end{math} is determined by the \textbf{illumination source} and \begin{math} r(x,y) \end{math} is determined by the \textbf{characteristics of the imaged objects}.
+
+**we would deal with a \textsl{transmissivity} instead of a \textsl{reflectivity} functions when these expressions applied to images formed via transmission of the illumination through a medium.\\
+\\
+\subsection{Image Sampling and Quantization}\ \textsl{(convert the continuous sensed data into digital form)}\\
+1. Basic Concepts
+a. \textsl{sampling} : digitizing the coordinate values 
+
+b. \textsl{quantization} : digitizing the amplitude values
+\\
+2. Representing Digital Images
+
+a. \begin{math} f(x,y) \end{math} : the value of the image at any coordinates \begin{math} (x,y) \end{math}. x,y are integers.
+
+b. \textsl{spatial domain} : the section of the real plane spanned by the coordinates of an image.\quad and x,y are referred to as spatial \textsl{variables} or \textsl{spatial coordinates}.
+\\
+3. three basic ways to represent \begin{math} f(x,y) \end{math} : 
+
+a. \textsl{(x,y,z)},\textsl{x} and \textsl{y} are spatial coordinates and \textsl{z} is the value of \textsl{f} at coordinates \textsl{(x,y)}
+
+b. \textsl{f(x,y)}is shows,and the intensity of each point is proportional to the value of \textsl{f} at that point. allow us to \textbf{view results at a glance}
+
+c. simply display the numerical values of \textsl{f(x,y)} as an array (matrix). allow us are used for \textbf{processing and algorithm development}. Each element of matrix is called an \textsl{ image element,picture element,pixel or pel.}
+
+It's advantageous to use a more traditional matrix notation to denote a digital image and its elements;
+\[
+\left(\begin{array}{cccc}
+a_{0,0} & a_{0,1} & \ldots & a_{0,N-1}\\
+a_{1,0} & a_{1,1} & \ldots & a_{1,N-1}\\
+\vdots & \vdots & \  & \vdots\\
+a_{M,0} & a_{M,1} & \ldots & a_{M,N-1}
+\end{array}\right)
+\]
+
+**NOTE : the origin of a digital image is at the top left,with the positive \begin{math} x-axis \end{math} extending downward and the positive \begin{math}y-axis \end{math} extending to the right. 
+\\
+4. \textsl{discrete intensity levels (L)} : typically is an integer power of 2 ：
+\begin{displaymath}
+L=2^k
+\end{displaymath}
+We difine the \begin{math}dynamic\ range \end{math} of an imaging system to be the ratio of the \textsl{maximum measurable intensity} to the \textsl{minimum detectable intensity} levle in the system. As a rule,the upper limit is determined by \begin{math} saturation \end{math} and the lower limit by \begin{math} noise \end{math}
+
+\textsl{contrast :} the difference in intensity between the highest and lowest intensity levels in an image. A higher dynamic range an image have,a higher contrast.
+
+b : bits required to store a digitized image
+\begin{displaymath}
+b = M \times N \times k
+\end{displaymath}
+\quad When M = N ,this equation becomes x
+\begin{displaymath}
+b=N^2k
+\end{displaymath}
+\\
+5. \textsl{spatial resolution }: common measures with \begin{math} line\ pairs\ per\ unit\ distance,\ and\ dots\ (pixels)\ per\end{math} \begin{math} unit\ distance.\end{math}
+
+\quad \textsl{image resolution} ： the largest number of \begin{math}discernible\end{math} line pairs [er unit distance.
+
+\quad \textsl{intensity resolution} : similarly refers to the smallest discernible change in intensity level.
+
+It was found that the isopreference curves tended to shift right and upward.Because a shift up and right in the curves simply means larger values for N and k, which implies beeter picture quality.
+\\
+6. Image Interpolation : the process of using known data to estimate values at unknown locations.
+
+a. \textsl{nearest neighbor interpolation} : assigns to each new location the intensity of its nearest neighbor in the original image.
+
+b. \textsl{bilinear interpolation} : the assigned value is obtained using the equation:
+\[
+v(x,y)=ax+by+cxy+d
+\]
+where the four coefficients are determined from the four equations in four unknowns that can be written using the four nearest neighbors of point(x,y).
+
+c. \textsl{bicubic interpolation} : involves the sixteen nearest neighbors of a point.The intensity value assigned to point(x,y)is obtained using the equation
+\[ 
+v(x,y)=\sum_{i=0}^3\sum_{j=0}^3a_{ij}x^iy^i
+\]
+\\
+\subsection{Basic Relation between Pixels}\
+1. V : the set of intensity values used to define adjacency.
+\quad S : represent a subset of pixels in an image.
+
+\quad R : a subset of pixels in an image. We call R a region of the image if R is connected set.Two regions,$R_i\ and\ R_j$ are said to be adjacent if their union forms a connected set.
+\\
+2. distance measures
+  D is a distance funtion or metric if
+
+\begin{eqnarray*}
+D(p,q)\ge0\ (D(p,q)=0\ iff\ p=q)\\
+D(p,q)=D(q,p)\ \ \ \ \ \ \ \ \ \ \ \\
+D(p,z)\leq D(p,q)+D(q,z)\ \ \ \ 
+\end{eqnarray*}
+
+the Euclidean distance between p and q is defined as
+\[
+D_e(p,q)=[(x-s)^2+(y-t)^2]^{\frac12}
+\]
+
+The $D_4$ distance (called the city-block distance) between p and q is defined as \[D_4(p,q)=|x-s|+|y-t| \]
+\[
+\begin{array}{ccccc}
+\  & \  &2 &\  &\ \\
+\  &2 &1 &2 &\ \\
+2 &1 &0 &1 &2\\
+\  &2 &1 &2 &\ \\
+\  & \  &2 &\  &\ 
+\end{array}
+\]
+
+The $D_8$ distance (called the chessboard distance)between p and q is defined as \[D_8(p,q)=max(|x-s|,|y-t|)\]
+\[
+\begin{array}{ccccc}
+2 &2 &2 &2 &2\\
+2 &1 &1 &1 &2\\
+2 &1 &0 &1 &2\\
+2 &1 &1 &1 &2\\
+2 &2 &2 &2 &2
+\end{array}
+\]
+\\
+\subsection{Mathematical Tools}\
+1. Linear operaor : H
+\begin{eqnarray*}
+H[a_if_i(x,y)+a_jf_j(x,y)] &=& a_iH[f_i(x,y)]+a_jH[f_j(x,y)]\\
+                           &=& a_ig_i(x,y)+a_jg_j(x,y)
+\end{eqnarray*}
+\\
+2. Four arithmetic operations are doneted as ：
+\begin{eqnarray*}
+s(x,y)=f(x,y)+g(x,y)\\
+d(x,y)=f(x,y)-g(x,y)\\
+p(x,y)=f(x,y)\times g(x,y)\\
+v(x,y)=f(x,y)\div g(x,y)
+\end{eqnarray*}
+It is understood that the operations are performed between corresponding pixel pairs in $f$ and $g$ for x=0,1,2,...,M-1 and y=0,1,2,...,N-1.
+\\
+3. Spatial Operations are performed directly on the pixels of a given image.We classify spatial operations into three broad categories : (1)single-pixel operations,(2)neighborhood operations,(3)geometric spatial transformations.
+
+a. Single-pixel operations
+\[
+s=T(z)
+\]
+$z$ is the intensity of a pixel in the original image and $s$ is the (mapped)intensity of the corresponding pixel in the processed image. 
+
+b. Neighborhood operations : $g(x,y)=\frac{1}{mn} \sum_{(r,c)\in S_xy} f(r,c)$
+
+c. Geometric spatial transformations modify the spatial relationship between pixels in an image.These transformations often are called \textsl{rubber-sheet} transformations because they may be viewed as analogous to ``printing" an image on a sheet of rubber and then stretching the sheet according to a predefined set of rules.It consists of two basic operations:(1)a spatial transformation of coordinates and (2)intensity interpolation that assigns intensity values to the spatially transformed pixels.
+
+The most commonly used spatial coordinate transformations is :
+\[
+[x\ y\ 1]=[v\ w\ 1]\textbf{T}=[v\ w\ 1] \left[\begin{array}{ccc}
+t_{11} & t_{12} & 0\\
+t_{21} & t_{22} & 0\\
+t_{31} & t_{32} & 1
+\end{array}\right] 
+\]
+\\
+4. 2-D linear transforms,denoted T(u,v),can be expressed in the general form
+\[
+T(u,v)=\sum_{x=0}^{M-1} \sum_{y=0}^{N-1} f(x,y)r(x,y,u,v)
+\]
+$f(x,y)$ is the input image,$r(x,y,u,v)$ is called the \textsl{forward transformation kernel}.
+%--------------------------------------------------------------chapter 2 ending
+
+
+\end{document}
